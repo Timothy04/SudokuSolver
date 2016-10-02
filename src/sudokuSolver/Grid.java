@@ -13,4 +13,30 @@ public class Grid {
 		}
 		return true;
 	}
+	
+	public static void printEmptyGrid() {
+		System.out.println("_________________________________________");
+		System.out.println("_________________________________________");
+		System.out.println("||   |   |   ||   |   |   ||   |   |   ||");
+		System.out.println("_________________________________________");
+		System.out.println("||   |   |   ||   |   |   ||   |   |   ||");
+		System.out.println("_________________________________________");
+		System.out.println("||   |   |   ||   |   |   ||   |   |   ||");
+		System.out.println("_________________________________________");
+		System.out.println("_________________________________________");
+		System.out.println("||   |   |   ||   |   |   ||   |   |   ||");
+		System.out.println("_________________________________________");
+		System.out.println("||   |   |   ||   |   |   ||   |   |   ||");
+		System.out.println("_________________________________________");
+		System.out.println("||   |   |   ||   |   |   ||   |   |   ||");
+		System.out.println("_________________________________________");
+		System.out.println("_________________________________________");
+		System.out.println("||   |   |   ||   |   |   ||   |   |   ||");
+		System.out.println("_________________________________________");
+		System.out.println("||   |   |   ||   |   |   ||   |   |   ||");
+		System.out.println("_________________________________________");
+		System.out.println("||   |   |   ||   |   |   ||   |   |   ||");
+		System.out.println("_________________________________________");
+		System.out.println("_________________________________________");
+	}
 }
