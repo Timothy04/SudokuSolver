@@ -23,6 +23,23 @@ public class Square {
 		this.possibilities = possibilities;
 	}
 	
+	public void setPossibility(int number, boolean p) {
+		possibilities[number - 1] = p;
+	}
+	
+	public void setNumber(int n) {
+		if (n <= possibilities.length) {
+			for (int i = 0; i < possibilities.length; i++) {
+				if (i == (n - 1)) {
+					possibilities[i] = true;
+				}
+				else {
+					possibilities[i] = false;
+				}
+			}
+		}
+	}
+	
 	public int isFound() { // returns the found number for this square. returns 0 if not found.
 		int found = 0;
 		

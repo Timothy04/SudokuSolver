@@ -18,6 +18,46 @@ public class Grid {
 	public void setSquares(Square squares[][]) {
 		this.squares = squares;
 	}
+	
+	public void setNumber(int x, int y, int number) {
+		squares[x][y].setNumber(number);
+	}
+	
+	public void checkArea(int x, int y, int number) {
+		// change possibilities for the horizontal row
+		for (int i = 0; i < squares.length; i++) {
+			if (i != y){
+				squares[x][i].setPossibility(number, false);
+			}
+		}
+		
+		// change possibilities for the vertical column
+		for (int i = 0; i < squares.length; i++) {
+			if (i != x) {
+				squares[i][y].setPossibility(number, false);
+			}
+		}
+		
+		// change possibilities for the big square
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				if (((x/3) * 3 + i) != x || ((y/3) * 3 + j) != y) {
+					squares[(x/3) * 3 + i][(y/3) * 3 + j].setPossibility(number, false);
+				}
+			}
+		}
+	}
+	
+	public void update() {
+		for (int i = 0; i < squares.length; i++) {
+			for (int j = 0; j < squares.length; j++) {
+				int n = squares[i][j].isFound();
+				if (n != 0) {
+					checkArea(i, j, n);
+				}
+			}
+		}
+	}
 
 	public boolean isCompleted() {
 		for(int i = 0; i < getSquares().length; i++) {
