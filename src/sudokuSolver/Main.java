@@ -1,8 +1,14 @@
 package sudokuSolver;
+
 import java.util.Scanner;
 
 public class Main {
-
+	
+	public static void main(String[] args) {
+        new Sudoku();
+    }
+	
+	/*
 	public static void main(String[] args) {
 		System.out.println("Welcome to Sudoku Solver !!");
 		
@@ -45,5 +51,6 @@ public class Main {
 		}
 		
 		System.out.println("Goodbye !");
-	}
+		
+	}*/
 }

@@ -14,6 +14,9 @@ public class Square {
 		this.possibilities[7] = eight;
 		this.possibilities[8] = nine;
 	}
+	
+	public Square() {
+	}
 
 	public boolean[] getPossibilities() {
 		return possibilities;
