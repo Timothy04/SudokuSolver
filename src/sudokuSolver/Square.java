@@ -49,14 +49,13 @@ public class Square {
 		for (int i = 0; i < possibilities.length; i++) {
 			if (possibilities[i] == true) {
 				if (found != 0)
-					return 0;
+					return 0; // this means there are still multiple possibilities
 				else
 					found = i + 1;
 			}
 		}
 		
 		// if program comes to here and found is still 0, it means there are no possibilities for this square => there is an error
-		
 		return found;
 	}
 	
@@ -68,12 +67,5 @@ public class Square {
 		}
 		
 		return true;
-	}
-	
-	public void printNumber() {
-		if (isError())
-			System.out.print("x");
-		else
-			System.out.print(isFound());
 	}
 }

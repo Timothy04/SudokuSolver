@@ -1,5 +1,5 @@
 /***
- * This class is completely taken from a StackOverflow comment : http://stackoverflow.com/a/12888426
+ * All the GUI part of this class is completely taken from a StackOverflow comment : http://stackoverflow.com/a/12888426
  */
 
 package sudokuSolver;
@@ -25,7 +25,8 @@ import javax.swing.border.LineBorder;
 import javax.swing.text.AbstractDocument;
 
 public class Sudoku {
-
+	SudokuBoard sb = new SudokuBoard();
+	
     public Sudoku() {
         EventQueue.invokeLater(new Runnable() {
             @Override
@@ -41,7 +42,7 @@ public class Sudoku {
                 JFrame frame = new JFrame();
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setLayout(new BorderLayout());
-                frame.add(new SudokuBoard());
+                frame.add(sb);
                 frame.add(new MenuPane(), BorderLayout.AFTER_LINE_ENDS);
                 frame.pack();
                 frame.setTitle("Sudoku Solver");
@@ -75,8 +76,18 @@ public class Sudoku {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if(e.getSource() == solveButton)
-			    System.out.println("Vous avez cliqué sur le bouton solve");
+			if(e.getSource() == solveButton) {
+				// Transform textfields to one grid
+				Grid g = sb.toGrid();
+				
+				// Solve the grid
+				if (!g.solve())
+					System.out.println("Grid couldn't be solved.");
+				else {
+					// Put the solved grid back in the textfields
+					sb.fillIn(g);
+				}
+			}
 	  
 			if(e.getSource() == resetButton)
 				System.out.println("Vous avez cliqué sur le bouton reset");
@@ -148,6 +159,32 @@ public class Sudoku {
                     fields[row][col] = new JTextField(4);
                 }
             }
+        }
+        
+        public Grid toGrid() {
+        	Grid g = new Grid();
+        	
+        	for (int i = 0; i < fields.length; i++) {
+    			for (int j = 0; j < fields.length; j++) {
+    				if (!fields[i][j].getText().isEmpty()) {
+    					int n = Integer.parseInt(fields[i][j].getText());
+    					
+    					g.setNumber(i, j, n);
+    				}
+    			}
+    		}
+        	
+        	return g;
+        }
+        
+        public void fillIn(Grid g) {
+        	int[][] t = g.toIntTable();
+        	
+        	for (int i = 0; i < fields.length; i++) {
+    			for (int j = 0; j < fields.length; j++) {
+    				fields[i][j].setText(String.valueOf(t[i][j]));
+    			}
+    		}
         }
     }
 }

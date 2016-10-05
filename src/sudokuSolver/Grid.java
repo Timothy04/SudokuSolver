@@ -4,7 +4,12 @@ public class Grid {
 	private Square squares[][] = new Square[9][9];
 	
 	public Grid() {
-		// TODO : Fill in with an empty grid
+		// Fill with empty squares
+		for (int i = 0; i < squares.length; i++) {
+			for (int j = 0; j < squares.length; j++) {
+				squares[i][j] = new Square();
+			}
+		}
 	}
 	
 	public Grid(Square[][] squares) {
@@ -15,6 +20,18 @@ public class Grid {
 		return squares;
 	}
 
+	public int[][] toIntTable() {
+		int[][] t = new int[squares.length][squares.length];
+		
+		for (int i = 0; i < squares.length; i++) {
+			for (int j = 0; j < squares.length; j++) {
+				t[i][j] = squares[i][j].isFound();
+			}
+		}
+		
+		return t;
+	}
+	
 	public void setSquares(Square squares[][]) {
 		this.squares = squares;
 	}
@@ -70,64 +87,16 @@ public class Grid {
 		return true;
 	}
 	
-	public static void printEmptyGrid() {
-		System.out.println("_________________________________________");
-		System.out.println("_________________________________________");
-		System.out.println("||   |   |   ||   |   |   ||   |   |   ||");
-		System.out.println("_________________________________________");
-		System.out.println("||   |   |   ||   |   |   ||   |   |   ||");
-		System.out.println("_________________________________________");
-		System.out.println("||   |   |   ||   |   |   ||   |   |   ||");
-		System.out.println("_________________________________________");
-		System.out.println("_________________________________________");
-		System.out.println("||   |   |   ||   |   |   ||   |   |   ||");
-		System.out.println("_________________________________________");
-		System.out.println("||   |   |   ||   |   |   ||   |   |   ||");
-		System.out.println("_________________________________________");
-		System.out.println("||   |   |   ||   |   |   ||   |   |   ||");
-		System.out.println("_________________________________________");
-		System.out.println("_________________________________________");
-		System.out.println("||   |   |   ||   |   |   ||   |   |   ||");
-		System.out.println("_________________________________________");
-		System.out.println("||   |   |   ||   |   |   ||   |   |   ||");
-		System.out.println("_________________________________________");
-		System.out.println("||   |   |   ||   |   |   ||   |   |   ||");
-		System.out.println("_________________________________________");
-		System.out.println("_________________________________________");
-	}
-	
-	public void printGrid() {
-		for (int i = 0; i < 9; i++) {
-			if (i%3 == 0) {
-				System.out.println("_________________________________________");
-				System.out.println("_________________________________________");
-			}
-			else {
-				System.out.println("_________________________________________");
-			}
-			
-			for (int j = 0; j < 9; j ++) {
-				if (j%3 == 0) {
-					System.out.print("||");
-				}
-				else {
-					System.out.print("|");
-				}
-				
-				System.out.print(" ");
-				squares[i][j].printNumber();
-				System.out.print(" ");
-
-				if (j == 8) {
-					System.out.print("||");
-				}
-			}
-			System.out.println();
-			
-			if (i == 8) {
-				System.out.println("_________________________________________");
-				System.out.println("_________________________________________");
-			}
+	public boolean solve() {
+		int i = 0;
+		
+		while (!isCompleted()) {
+			i++;
+			update();
+			if (i > 50)
+				return false;
 		}
+		
+		return true;
 	}
 }
