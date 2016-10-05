@@ -10,6 +10,8 @@ import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -42,13 +44,18 @@ public class Sudoku {
                 frame.add(new SudokuBoard());
                 frame.add(new MenuPane(), BorderLayout.AFTER_LINE_ENDS);
                 frame.pack();
+                frame.setTitle("Sudoku Solver");
+                frame.setSize(400, 325);
+                frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
             }
         });
     }
 
-    public class MenuPane extends JPanel {
-
+    public class MenuPane extends JPanel implements ActionListener {
+    	JButton solveButton = new JButton("Solve");
+        JButton resetButton = new JButton("Reset");
+        
         public MenuPane() {
             setBorder(new EmptyBorder(4, 4, 4, 4));
             setLayout(new GridBagLayout());
@@ -58,11 +65,22 @@ public class Sudoku {
             gbc.weightx = 1;
             gbc.fill = GridBagConstraints.HORIZONTAL;
 
-            add(new JButton("Solve"), gbc);
+            add(solveButton, gbc);
             gbc.gridy++;
-            add(new JButton("Reset"), gbc);
-
+            add(resetButton, gbc);
+            
+            solveButton.addActionListener(this);
+            resetButton.addActionListener(this);
         }
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(e.getSource() == solveButton)
+			    System.out.println("Vous avez cliqué sur le bouton solve");
+	  
+			if(e.getSource() == resetButton)
+				System.out.println("Vous avez cliqué sur le bouton reset");
+		}
     }
 
     public class SudokuBoard extends JPanel {
