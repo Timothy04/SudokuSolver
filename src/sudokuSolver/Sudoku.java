@@ -90,7 +90,7 @@ public class Sudoku {
 			}
 	  
 			if(e.getSource() == resetButton)
-				System.out.println("Vous avez cliqué sur le bouton reset");
+				sb.reset();
 		}
     }
 
@@ -183,6 +183,14 @@ public class Sudoku {
         	for (int i = 0; i < fields.length; i++) {
     			for (int j = 0; j < fields.length; j++) {
     				fields[i][j].setText(String.valueOf(t[i][j]));
+    			}
+    		}
+        }
+        
+        public void reset() {        	
+        	for (int i = 0; i < fields.length; i++) {
+    			for (int j = 0; j < fields.length; j++) {
+    				fields[i][j].setText("");
     			}
     		}
         }
