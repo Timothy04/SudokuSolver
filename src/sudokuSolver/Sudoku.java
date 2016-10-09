@@ -82,7 +82,7 @@ public class Sudoku {
 				
 				// Solve the grid
 				if (!g.solve())
-					System.out.println("Grid couldn't be solved.");
+					System.out.println("This sudoku couldn't be solved.");
 				else {
 					// Put the solved grid back in the textfields
 					sb.fillIn(g);

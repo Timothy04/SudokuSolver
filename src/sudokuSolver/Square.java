@@ -16,6 +16,12 @@ public class Square {
 	}
 	
 	public Square() {
+		
+	}
+	
+	public Square(Square s) {
+		for(int i = 0; i< possibilities.length; i++)
+			possibilities[i] = s.possibilities[i];
 	}
 
 	public boolean[] getPossibilities() {
@@ -26,12 +32,37 @@ public class Square {
 		this.possibilities = possibilities;
 	}
 	
-	public void setPossibility(int number, boolean p) {
-		possibilities[number - 1] = p;
+	public boolean setPossibility(int number, boolean p) { // return true if something has changed
+		if (possibilities[number - 1] != p) {
+			possibilities[number - 1] = p;
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public int setFirstPossibility() {
+		for (int i = 0; i < possibilities.length; i++) {
+			if (possibilities[i] == true) {
+				setNumber(i + 1);
+				return i + 1;
+			}
+		}
+		
+		return 0;
+	}
+	
+	public int getFirstPossibility() {
+		for (int i = 0; i < possibilities.length; i++) {
+			if (possibilities[i] == true)
+				return i;
+		}
+		return 0;
 	}
 	
 	public void setNumber(int n) {
-		if (n <= possibilities.length) {
+		if (n <= possibilities.length && n > 0) {
 			for (int i = 0; i < possibilities.length; i++) {
 				if (i == (n - 1)) {
 					possibilities[i] = true;
